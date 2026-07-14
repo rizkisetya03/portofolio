@@ -1,0 +1,411 @@
+/* CSS Variables - Formal Business Themes */
+[data-theme="dark"] {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --modal-overlay: rgba(15, 23, 42, 0.75);
+}
+
+[data-theme="light"] {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.1);
+  --modal-overlay: rgba(15, 23, 42, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Segoe UI', Inter, Roboto, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.nav-container {
+  backdrop-filter: blur(12px);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.nav-brand {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.3px;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  transition: background 0.2s;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-main);
+}
+
+/* Hero Header */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem 2.5rem;
+}
+
+.hero-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Mengubah dari space-between ke center */
+  gap: 40px;               /* Mengatur jarak langsung antara teks dan foto (bisa disesuaikan, misal 30px - 50px) */
+  width: 100%;
+  max-width: 1200px;       /* Membatasi lebar maksimal container utama */
+  margin: 0 auto;          /* Membuat container tetap di tengah layar */
+  padding: 20px;
+}
+
+.hero-info {
+  flex: 1;
+  max-width: 650px;        /* Membatasi lebar teks deskripsi agar tidak terlalu molor ke kanan */
+}
+
+.profile-container {
+  flex-shrink: 0;          /* Memastikan container foto tidak mengecil */
+}
+
+@media (min-width: 768px) {
+  .hero-wrapper {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.hero-info h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+}
+
+.hero-info p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 600px;
+}
+
+.profile-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  background: #cbd5e1;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Layout Content */
+.content-container {
+  max-width: 1000px;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
+}
+
+.portfolio-section {
+  margin-bottom: 3.5rem;
+}
+
+.section-header {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+/* Cards & ZOOM OUT Hover System */
+.interactive-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.interactive-card:hover {
+  transform: scale(0.97);
+  box-shadow: 0 4px 12px var(--accent-glow);
+  border-color: var(--accent);
+}
+
+.timeline-container {
+  border-left: 2px solid var(--border-color);
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+/* Layout Grid Khusus Sertifikat (Bukan Slide) */
+.cert-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .cert-grid-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cert-grid-layout {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Dynamic Slideshow Layout */
+.carousel-outer-container {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-overflow {
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+
+.carousel-wrapper {
+  display: flex;
+ transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+  width: 100%;
+}
+
+/* Slide item sizing - Disesuaikan menjadi 3 card per baris */
+.carousel-wrapper .interactive-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+
+@media (min-width: 600px) {
+  .carousel-wrapper .interactive-card {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+    margin: 0 0.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .carousel-wrapper .interactive-card {
+    flex: 0 0 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+    margin: 0 0.5rem;
+  }
+}
+
+.card-banner {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #e2e8f0;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.card-subtitle {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  white-space: pre-line; /* Menerjemahkan enter (\n) di database sebagai baris baru */
+}
+
+/* Buttons */
+.cosmic-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #ffffff;
+  padding: 0.5rem 1.1rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-align: center;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+
+.cosmic-btn:hover {
+  opacity: 0.9;
+}
+
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.nav-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+/* Loading & Modal */
+#loading-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: var(--bg-main);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.loading-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+.global-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: var(--modal-overlay);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.global-modal.modal-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  max-width: 680px;
+  width: 90%;
+  max-height: 85vh;
+  border-radius: 12px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+.close-modal-btn:hover {
+  color: var(--text-main);
+}
+
+.modal-body-render {
+  padding: 2.25rem;
+  text-align: center;
+}
+
+.modal-image-preview {
+  max-width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  border: 1px solid var(--border-color);
+}

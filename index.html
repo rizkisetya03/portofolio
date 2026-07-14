@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Profesional - Ringkasan Kompetensi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay">
+    <div class="loading-text">MEMUAT DATA PORTOFOLIO...</div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-container">
+    <div class="nav-brand">Portofolio Profesional</div>
+    <button class="theme-toggle-btn" id="theme-button" aria-label="Toggle Theme">
+      <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </button>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="hero-section">
+    <div class="hero-wrapper">
+      <div class="hero-info">
+        <h1 id="node-name">Profil Informasi</h1>
+        <p id="about-desc">Sinkronisasi data profil resume...</p>
+      </div>
+      <div class="profile-container">
+        <div class="profile-photo" id="node-photo"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="content-container">
+    
+    <!-- Riwayat Pendidikan -->
+    <section class="portfolio-section">
+      <h2 class="section-header">Riwayat Pendidikan</h2>
+      <div id="edu-list"></div>
+    </section>
+
+    <!-- Pengalaman Kerja / Magang -->
+    <section class="portfolio-section">
+      <h2 class="section-header">Pengalaman Kerja / Magang</h2>
+      <div id="exp-list" class="timeline-container"></div>
+    </section>
+
+    <!-- Pengalaman Organisasi -->
+    <section class="portfolio-section">
+      <h2 class="section-header">Pengalaman Organisasi</h2>
+      <div id="org-list"></div>
+    </section>
+
+<!-- Sertifikasi & Kompetensi (Model Organisasi - Vertikal Statis) -->
+    <section class="portfolio-section">
+      <h2 class="section-header">Sertifikasi & Kompetensi</h2>
+      <div id="cert-list"></div>
+    </section>
+
+    <!-- Penghargaan & Pencapaian (Slideshow - 3 Card) -->
+    <section class="portfolio-section">
+      <h2 class="section-header">Penghargaan & Pencapaian</h2>
+      <div class="carousel-outer-container">
+        <div class="carousel-overflow">
+          <div id="award-list" class="carousel-wrapper"></div>
+        </div>
+        <div class="carousel-nav">
+          <button class="nav-btn" id="prev-award" aria-label="Previous Slide">◀</button>
+          <button class="nav-btn" id="next-award" aria-label="Next Slide">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeri Proyek (Slideshow - 3 Card) -->
+    <section class="portfolio-section">
+      <h2 class="section-header">Galeri Proyek</h2>
+      <div class="carousel-outer-container">
+        <div class="carousel-overflow">
+          <div id="project-list" class="carousel-wrapper"></div>
+        </div>
+        <div class="carousel-nav">
+          <button class="nav-btn" id="prev-project" aria-label="Previous Slide">◀</button>
+          <button class="nav-btn" id="next-project" aria-label="Next Slide">▶</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Modal Popup -->
+  <div class="global-modal" id="global-portfolio-modal">
+    <div class="modal-content-box">
+      <button class="close-modal-btn" id="close-modal-trigger" aria-label="Close Popup">&times;</button>
+      <div class="modal-body-render" id="modal-body-content"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
