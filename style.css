@@ -48,15 +48,13 @@ body {
 }
 
 /* ==========================================================================
-   NAVIGATION BAR - SATU BARIS UNTUK DESKTOP / PC
+   NAVIGATION BAR & LIVE CLOCK PANEL (OPTIMAL PC & MOBILE)
    ========================================================================== */
 .nav-container {
   display: flex;
-  flex-direction: row;        /* Paksa satu baris horizontal di PC */
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
-  padding: 1.15rem 10%;
+  padding: 1rem 10%; 
   background: var(--bg-card);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
@@ -64,26 +62,26 @@ body {
   z-index: 100;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  gap: 1.5rem;
 }
 
 .nav-brand {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  flex-shrink: 0;
+  white-space: nowrap; /* Mencegah judul brand patah baris */
 }
 
-/* Row Metadata Tengah (Kontak + Jam) */
-.nav-metadata-row {
+/* Wrapper grup kanan agar tetap satu baris di PC */
+.nav-actions-group {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  gap: 1.5rem;
+  flex-grow: 1;
   justify-content: flex-end;
-  gap: 2rem;
-  flex-grow: 1;              /* Memaksa elemen tengah mengisi ruang kosong */
 }
 
 .nav-contact-panel {
@@ -95,24 +93,20 @@ body {
 .nav-contact-link {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   display: flex;
   align-items: center;
   gap: 0.4rem;
   transition: var(--transition);
-  white-space: nowrap;
+  white-space: nowrap; /* Mencegah teks kontak patah ke bawah */
 }
 
 .nav-contact-link:hover {
   color: var(--accent);
 }
 
-.nav-icon {
-  font-size: 0.95rem;
-}
-
 .live-clock-container {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-weight: 600;
   background: var(--bg-main);
@@ -120,9 +114,6 @@ body {
   border-radius: 6px;
   border: 1px solid var(--border-color);
   white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
 }
 
 .theme-toggle-btn {
@@ -144,71 +135,50 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE TOPBAR (UNTUK SMARTPHONE & TABLET)
+   MEDIA QUERIES - RESPONSIVE NAVBAR
    ========================================================================== */
+
+/* HAPUS ATAU GANTI pengaturan .nav-container lama yang ada di @media (max-width: 900px) dengan ini */
 @media (max-width: 992px) {
   .nav-container {
-    flex-direction: column;    /* Berubah menjadi vertikal bertumpuk di HP */
-    gap: 0.85rem;
-    padding: 0.85rem 5%;
+    padding: 1rem 6%;
   }
-
-  .nav-brand {
-    font-size: 1.2rem;
-    width: 100%;
-    text-align: left;
+  
+  /* Sembunyikan teks LinkedIn / Email / WA di tablet/HP, hanya sisakan ikon agar ringkas */
+  .nav-contact-text {
+    display: none; 
   }
-
-  /* Di HP, kita memposisikan tombol tema sejajar di kanan atas */
-  .theme-toggle-btn {
-    position: absolute;
-    top: 0.75rem;
-    right: 5%;
-  }
-
-  .nav-metadata-row {
-    flex-direction: column;    /* Kontak di atas, Jam di bawahnya */
-    align-items: stretch;
-    width: 100%;
-    gap: 0.75rem;
-    border-top: 1px solid var(--border-color);
-    padding-top: 0.75rem;
-  }
-
+  
   .nav-contact-panel {
-    justify-content: space-between;
-    width: 100%;
-    gap: 0.5rem;
-  }
-
-  .nav-contact-link {
-    font-size: 0.75rem;
-  }
-
-  .live-clock-container {
-    justify-content: center;
-    width: 100%;
+    gap: 1rem;
   }
 }
 
-/* Layar Ekstrem Kecil (HP jadul / potret sempit) */
-@media (max-width: 420px) {
-  .nav-contact-text {
-    display: none;             /* Sembunyikan teks panjang, sisakan ikon saja */
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column; /* Mengubah susunan menjadi atas-bawah yang rapi di smartphone */
+    gap: 0.75rem;
+    padding: 0.85rem 4%;
+    align-items: center;
+  }
+
+  .nav-brand-group {
+    text-align: center;
+  }
+
+  .nav-actions-group {
+    width: 100%;
+    justify-content: space-between; /* Mendistribusikan space secara merata di mobile */
+    gap: 0.75rem;
   }
   
-  .nav-contact-link {
-    background: var(--bg-main);
-    padding: 0.45rem 0.75rem;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
+  .live-clock-container {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
   }
-  
-  .nav-contact-panel {
-    justify-content: center;
-    gap: 1rem;
-  }
-}========================================================================
+}
+
+/* ==========================================================================
    HERO BANNER & PROFILE SECTIONS (DISEJAJARKAN DENGAN MARGIN BARU)
    ========================================================================== */
 .hero-section {
@@ -739,40 +709,3 @@ body {
   }
 }
 
-@media (max-width: 900px) {
-  .hero-wrapper {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 30px;
-  }
-  #about-desc {
-    margin: 0 auto;
-  }
-  .nav-container {
-    flex-direction: column;
-    gap: 0.85rem;
-    align-items: center;
-    padding: 1.25rem 4%;
-  }
-}
-
-@media (max-width: 600px) {
-  .content-container {
-    padding: 0 4%; /* Jarak minimum sisi layar pada ponsel agar tidak pecah */
-  }
-  .hero-section {
-    padding: 3rem 4% 2rem;
-  }
-  .vertical-cert-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
-  }
-  .vertical-cert-main {
-    padding-right: 0;
-  }
-  .section-header-group {
-    flex-direction: row;
-    align-items: center;
-  }
-}
