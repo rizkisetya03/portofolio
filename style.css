@@ -48,13 +48,13 @@ body {
 }
 
 /* ==========================================================================
-   NAVIGATION BAR & LIVE CLOCK PANEL (PENGATURAN LEBAR & ANTI MEPEET)
+   NAVIGATION BAR & TOPBAR SYSTEM (OPTIMIZED FOR MOBILE & DESKTOP)
    ========================================================================== */
 .nav-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 10%; /* Diperlebar dari 8% untuk layout bernafas */
+  flex-direction: column; /* Menggunakan pendekatan bertingkat */
+  gap: 0.75rem;
+  padding: 1rem 10%;
   background: var(--bg-card);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
@@ -64,8 +64,16 @@ body {
   transition: var(--transition);
 }
 
+/* Baris Pertama: Brand dan Switcher Tema */
+.nav-brand-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .nav-brand {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
@@ -73,19 +81,30 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Baris Kedua: Kontak dan Jam Digital */
+.nav-metadata-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Izinkan elemen turun jika tidak muat */
+  width: 100%;
+}
+
 .nav-contact-panel {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-contact-link {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   transition: var(--transition);
 }
 
@@ -93,14 +112,22 @@ body {
   color: var(--accent);
 }
 
+.nav-icon {
+  font-size: 0.9rem;
+}
+
 .live-clock-container {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 600;
   background: var(--bg-main);
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 6px;
   border: 1px solid var(--border-color);
+  white-space: nowrap; /* Mencegah jam terpotong baris */
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .theme-toggle-btn {
@@ -120,6 +147,56 @@ body {
   background: var(--border-color);
 }
 
+/* ==========================================================================
+   RESPONSIVE TOPBAR (FOR SMARTPHONES)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.85rem 5%; /* Perkecil padding samping di layar kecil */
+    gap: 0.65rem;
+  }
+
+  .nav-metadata-row {
+    flex-direction: column; /* Susun vertikal antara panel kontak dan jam */
+    align-items: stretch; /* Lebar penuh */
+    gap: 0.65rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.65rem;
+  }
+
+  .nav-contact-panel {
+    justify-content: space-between; /* Sebar rata kontak agar seimbang */
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .nav-contact-link {
+    font-size: 0.75rem; /* Perkecil sedikit ukuran teks di HP */
+  }
+
+  /* Sembunyikan teks kontak yang terlalu panjang di HP layar sangat kecil agar tidak merusak layout */
+  @media (max-width: 400px) {
+    .nav-contact-text {
+      display: none; /* Hanya menyisakan ikon emoji yang rapi */
+    }
+    .nav-contact-link {
+      background: var(--bg-main);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+    .nav-contact-panel {
+      justify-content: center;
+      gap: 0.75rem;
+    }
+  }
+
+  .live-clock-container {
+    justify-content: center; /* Pusatkan jam di bagian bawah navbar */
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 /* ==========================================================================
    HERO BANNER & PROFILE SECTIONS (DISEJAJARKAN DENGAN MARGIN BARU)
    ========================================================================== */
