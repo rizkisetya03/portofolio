@@ -8,14 +8,43 @@
 </head>
 <body>
 
-  <!-- Loading Overlay -->
-  <div id="loading-overlay">
-    <div class="loading-text">MEMUAT DATA PORTOFOLIO...</div>
+  <!-- Loading Overlay dengan Spinner Modern -->
+<!-- Loading Overlay dengan Cosmic Orbit Spinner -->
+<div id="loading-overlay">
+  <div class="cosmic-loading-wrapper">
+    <div class="cosmic-spinner">
+      <div class="cosmic-core"></div>
+      <div class="cosmic-orbit orbit-1"></div>
+      <div class="cosmic-orbit orbit-2"></div>
+    </div>
+    <div class="cosmic-loading-text">MEMUAT DATA PORTOFOLIO</div>
   </div>
+</div>
 
   <!-- Navigation Bar -->
   <nav class="nav-container">
-    <div class="nav-brand">Portofolio Profesional</div>
+    <div class="nav-brand-group">
+      <div class="nav-brand">Dashboard Portofolio</div>
+    </div>
+    
+    <!-- Panel Kontak Atas -->
+    <div class="nav-contact-panel">
+      <a href="https://wa.me/6282228156798" target="_blank" class="nav-contact-link" title="Hubungi via WhatsApp">
+        <span>📞</span> <span class="nav-contact-text">0822-2815-6798</span>
+      </a>
+      <a href="mailto:rizkisetya03@gmail.com" target="_blank" class="nav-contact-link" title="Kirim Email">
+        <span>📧</span> <span class="nav-contact-text">rizkisetya03@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/rizki-setyabudi-137734281" target="_blank" class="nav-contact-link" title="Buka Profil LinkedIn">
+        <span>🔗</span> <span class="nav-contact-text">LinkedIn</span>
+      </a>
+    </div>
+    
+    <!-- Live Date & Time -->
+    <div class="live-clock-container" id="live-clock">
+      <span class="clock-icon">📅</span> <span id="clock-text">Menghubungkan...</span>
+    </div>
+
     <button class="theme-toggle-btn" id="theme-button" aria-label="Toggle Theme">
       <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
     </button>
@@ -38,32 +67,44 @@
   <main class="content-container">
     
     <!-- Riwayat Pendidikan -->
-    <section class="portfolio-section">
-      <h2 class="section-header">Riwayat Pendidikan</h2>
+    <section class="portfolio-section" id="sec-edu">
+      <div class="section-header-group">
+        <h2 class="section-header">Riwayat Pendidikan</h2>
+      </div>
       <div id="edu-list"></div>
     </section>
 
     <!-- Pengalaman Kerja / Magang -->
-    <section class="portfolio-section">
-      <h2 class="section-header">Pengalaman Kerja / Magang</h2>
+    <section class="portfolio-section" id="sec-exp">
+      <div class="section-header-group">
+        <h2 class="section-header">Pengalaman Magang</h2>
+      </div>
       <div id="exp-list" class="timeline-container"></div>
     </section>
 
     <!-- Pengalaman Organisasi -->
-    <section class="portfolio-section">
-      <h2 class="section-header">Pengalaman Organisasi</h2>
+    <section class="portfolio-section" id="sec-org">
+      <div class="section-header-group">
+        <h2 class="section-header">Pengalaman Organisasi</h2>
+      </div>
       <div id="org-list"></div>
     </section>
 
-<!-- Sertifikasi & Kompetensi (Model Organisasi - Vertikal Statis) -->
-    <section class="portfolio-section">
-      <h2 class="section-header">Sertifikasi & Kompetensi</h2>
-      <div id="cert-list"></div>
+        <!-- SERTIFIKASI -->
+    <section class="portfolio-section" id="sec-certification-list">
+      <div class="section-header-group">
+        <h2 class="section-header">Sertifikasi Kompetensi</h2>
+        <span class="section-counter-badge" id="count-certification">0</span>
+      </div>
+      <div id="vertical-certification-list" class="vertical-list-container"></div>
     </section>
 
-    <!-- Penghargaan & Pencapaian (Slideshow - 3 Card) -->
-    <section class="portfolio-section">
-      <h2 class="section-header">Penghargaan & Pencapaian</h2>
+    <!-- Penghargaan & Pencapaian -->
+    <section class="portfolio-section" id="sec-award">
+      <div class="section-header-group">
+        <h2 class="section-header">Penghargaan & Pencapaian</h2>
+        <span class="section-counter-badge" id="count-award">0</span>
+      </div>
       <div class="carousel-outer-container">
         <div class="carousel-overflow">
           <div id="award-list" class="carousel-wrapper"></div>
@@ -75,19 +116,59 @@
       </div>
     </section>
 
-    <!-- Galeri Proyek (Slideshow - 3 Card) -->
-    <section class="portfolio-section">
-      <h2 class="section-header">Galeri Proyek</h2>
+    <!-- Galeri Portofolio Akuntansi -->
+    <section class="portfolio-section" id="sec-accounting">
+      <div class="section-header-group">
+        <h2 class="section-header">Portofolio Akuntansi</h2>
+        <span class="section-counter-badge" id="count-accounting">0</span>
+      </div>
       <div class="carousel-outer-container">
         <div class="carousel-overflow">
-          <div id="project-list" class="carousel-wrapper"></div>
+          <div id="accounting-project-list" class="carousel-wrapper"></div>
         </div>
         <div class="carousel-nav">
-          <button class="nav-btn" id="prev-project" aria-label="Previous Slide">◀</button>
-          <button class="nav-btn" id="next-project" aria-label="Next Slide">▶</button>
+          <button class="nav-btn" id="prev-accounting" aria-label="Previous Slide">◀</button>
+          <button class="nav-btn" id="next-accounting" aria-label="Next Slide">▶</button>
         </div>
       </div>
     </section>
+
+    <!-- Galeri Project IT -->
+    <section class="portfolio-section" id="sec-it">
+      <div class="section-header-group">
+        <h2 class="section-header">Project IT & Developer</h2>
+        <span class="section-counter-badge" id="count-it">0</span>
+      </div>
+      <div class="carousel-outer-container">
+        <div class="carousel-overflow">
+          <div id="it-project-list" class="carousel-wrapper"></div>
+        </div>
+        <div class="carousel-nav">
+          <button class="nav-btn" id="prev-it" aria-label="Previous Slide">◀</button>
+          <button class="nav-btn" id="next-it" aria-label="Next Slide">▶</button>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- SERTIFIKAT (Galeri Berkas) -->
+    <section class="portfolio-section" id="sec-dokumen-gallery">
+      <div class="section-header-group">
+        <h2 class="section-header">Galeri Berkas Sertifikat</h2>
+        <span class="section-counter-badge" id="count-dokumen">0</span>
+      </div>
+      <div class="carousel-outer-container">
+        <div class="carousel-overflow">
+          <div id="dokumen-gallery-list" class="carousel-wrapper"></div>
+        </div>
+        <div class="carousel-nav">
+          <button class="nav-btn" id="prev-doc" aria-label="Previous Slide">◀</button>
+          <button class="nav-btn" id="next-doc" aria-label="Next Slide">▶</button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Global Modal Popup -->
