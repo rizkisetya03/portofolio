@@ -1,328 +1,407 @@
-/* CSS Variables - Formal Business Themes */
-[data-theme="dark"] {
-  --bg-main: #0f172a;
-  --bg-card: #1e293b;
-  --border-color: #334155;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --accent: #3b82f6;
-  --accent-glow: rgba(59, 130, 246, 0.15);
-  --modal-overlay: rgba(15, 23, 42, 0.75);
-}
-
-[data-theme="light"] {
+/* ==========================================================================
+   VARIABEL CSS UTAMA (THEMING & SISTEM DESAIN)
+   ========================================================================== */
+:root {
   --bg-main: #f8fafc;
   --bg-card: #ffffff;
-  --border-color: #e2e8f0;
   --text-main: #0f172a;
-  --text-muted: #64748b;
-  --accent: #2563eb;
-  --accent-glow: rgba(37, 99, 235, 0.1);
-  --modal-overlay: rgba(15, 23, 42, 0.4);
+  --text-muted: #475569;
+  --border-color: #e2e8f0;
+  --accent: #0284c7;            /* Biru Langit - Akuntansi */
+  --accent-secondary: #10b981;  /* Hijau Emerald - IT & Dev */
+  --accent-certificate: #8b5cf6;/* Ungu Royal - Berkas Sertifikat */
+  --accent-award: #f59e0b;      /* Amber Emas - Penghargaan / Sertifikasi */
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg-main: #090d16;
+  --bg-card: #131b2e;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #1e293b;
+  --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: 'Segoe UI', Inter, Roboto, sans-serif;
+  transition: var(--transition);
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-/* Navbar */
+/* ==========================================================================
+   RESPONSIF TERHADAP ENTER (PRESERVE LINE BREAKS FROM SHEET)
+   ========================================================================== */
+.text-preserve-enter {
+  white-space: pre-wrap !important; 
+  word-wrap: break-word;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR & LIVE CLOCK PANEL (PENGATURAN LEBAR & ANTI MEPEET)
+   ========================================================================== */
 .nav-container {
-  backdrop-filter: blur(12px);
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-color);
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem 10%; /* Diperlebar dari 8% untuk layout bernafas */
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
 }
 
 .nav-brand {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-main);
-  letter-spacing: 0.3px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-contact-panel {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-contact-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition);
+}
+
+.nav-contact-link:hover {
+  color: var(--accent);
+}
+
+.live-clock-container {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  background: var(--bg-main);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
 }
 
 .theme-toggle-btn {
-  background: transparent;
-  border: 1px solid var(--border-color);
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
+  background: none;
+  border: none;
   cursor: pointer;
+  color: var(--text-main);
+  padding: 0.5rem;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-main);
-  transition: background 0.2s;
+  transition: var(--transition);
 }
 
 .theme-toggle-btn:hover {
-  background: var(--bg-main);
+  background: var(--border-color);
 }
 
-/* Hero Header */
+/* ==========================================================================
+   HERO BANNER & PROFILE SECTIONS (DISEJAJARKAN DENGAN MARGIN BARU)
+   ========================================================================== */
 .hero-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem 2.5rem;
+  padding: 5rem 10% 3.5rem; /* Diperlebar dari 8% */
+  background: radial-gradient(circle at 10% 20%, rgb(0 140 255 / 0.05) 0%, transparent 40%);
 }
 
 .hero-wrapper {
+  max-width: 1400px; /* Diperbesar agar sesuai dengan bentang layar lebar */
+  margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center; /* Mengubah dari space-between ke center */
-  gap: 40px;               /* Mengatur jarak langsung antara teks dan foto (bisa disesuaikan, misal 30px - 50px) */
-  width: 100%;
-  max-width: 1200px;       /* Membatasi lebar maksimal container utama */
-  margin: 0 auto;          /* Membuat container tetap di tengah layar */
-  padding: 20px;
-}
-
-.hero-info {
-  flex: 1;
-  max-width: 650px;        /* Membatasi lebar teks deskripsi agar tidak terlalu molor ke kanan */
-}
-
-.profile-container {
-  flex-shrink: 0;          /* Memastikan container foto tidak mengecil */
-}
-
-@media (min-width: 768px) {
-  .hero-wrapper {
-    flex-direction: row;
-    text-align: left;
-  }
+  gap: 60px;
 }
 
 .hero-info h1 {
-  font-size: 2.25rem;
-  font-weight: 800;
-  margin-bottom: 0.75rem;
-  color: var(--text-main);
+  font-size: 3rem;
+  font-weight: 850;
+  margin-bottom: 1.25rem;
+  letter-spacing: -1px;
 }
 
-.hero-info p {
+#about-desc {
   color: var(--text-muted);
+  max-width: 700px;
   font-size: 1.05rem;
-  max-width: 600px;
+  line-height: 1.7;
 }
 
 .profile-container {
-  position: relative;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
 }
 
 .profile-photo {
   width: 100%;
   height: 100%;
-  background: #cbd5e1;
   border-radius: 50%;
-  border: 2px solid var(--border-color);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 4px solid var(--bg-card);
 }
 
-/* Layout Content */
+/* ==========================================================================
+   TATA LETAK UTAMA & ANTI-MEPET SYSTEM (PERBAIKAN MARGIN-PADDING)
+   ========================================================================== */
 .content-container {
-  max-width: 1000px;
-  margin: 0 auto 5rem;
-  padding: 0 2rem;
+  max-width: 1440px; /* Ditambah batas maksimalnya */
+  margin: 0 auto 6rem;
+  padding: 0 10%; /* Diperlebar dari 4rem agar halaman terlihat lapang dan premium */
 }
 
 .portfolio-section {
-  margin-bottom: 3.5rem;
+  margin-bottom: 5rem;
+  position: relative;
+}
+
+/* --- TATA LETAK HEADER SECTION & COUNTER BADGE --- */
+.section-header-group {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;           
+  width: 100%;
+  margin-bottom: 2.25rem; /* Menjauhkan header dari tumpukan kartu di bawahnya */
+  border-bottom: 2px solid var(--border-color); 
+  padding-bottom: 0.85rem;
 }
 
 .section-header {
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 0;
 }
 
-.section-header::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-color);
+/* Badge Counter Jumlah Atas Kanan Section */
+.section-counter-badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  border: none;
+  color: #ffffff;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 750;
+  box-shadow: var(--shadow);
 }
 
-/* Cards & ZOOM OUT Hover System */
+/* Penanda Ikon Kategori */
+.portfolio-section#sec-edu .section-header::before { content: "🎓"; }
+.portfolio-section#sec-exp .section-header::before { content: "💼"; }
+.portfolio-section#sec-org .section-header::before { content: "⚖️"; }
+.portfolio-section#sec-award .section-header::before { content: "🏆"; }
+.portfolio-section#sec-accounting .section-header::before { content: "📈"; }
+.portfolio-section#sec-it .section-header::before { content: "💻"; }
+.portfolio-section#sec-certification-list .section-header::before { content: "📜"; }
+.portfolio-section#sec-dokumen-gallery .section-header::before { content: "🖼️"; }
+
+/* Kartu Interaktif */
 .interactive-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .interactive-card:hover {
-  transform: scale(0.97);
-  box-shadow: 0 4px 12px var(--accent-glow);
-  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px -5px rgb(0 0 0 / 0.15);
 }
 
-.timeline-container {
-  border-left: 2px solid var(--border-color);
-  padding-left: 1.5rem;
-  margin-left: 0.5rem;
+.card-title {
+  font-size: 1.18rem;
+  font-weight: 750;
+  margin-bottom: 0.5rem;
 }
 
-/* Layout Grid Khusus Sertifikat (Bukan Slide) */
-.cert-grid-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+.card-subtitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
 }
 
-@media (min-width: 768px) {
-  .cert-grid-layout {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.card-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
 }
 
-@media (min-width: 1024px) {
-  .cert-grid-layout {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* Menambahkan pembatas eksplisit antara teks deskripsi dan tombol aksi di bawahnya */
+.card-text {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 1.5rem; /* Jarak aman sebelum tombol */
+  flex-grow: 1; /* Memastikan tombol selalu sejajar rapi di bagian paling bawah */
 }
 
-/* Dynamic Slideshow Layout */
+.badge-ipk {
+  align-self: flex-start;
+  display: inline-block;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Jarak tombol di dalam card pengalaman */
+.interactive-card .cosmic-btn {
+  margin-top: auto; /* Mendorong tombol ke dasar kartu jika konten di atasnya sedikit */
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   TATA LETAK VERTIKAL (SERTIFIKASI KOMPETENSI)
+   ========================================================================== */
+.vertical-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.vertical-cert-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid var(--accent-award) !important;
+  padding: 1.8rem !important;
+  width: 100% !important;
+}
+
+.vertical-cert-main {
+  flex: 1;
+  padding-right: 2rem;
+}
+
+.vertical-cert-main .card-text {
+  margin-bottom: 1.25rem;
+}
+
+.vertical-cert-side {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   GAYA BINGKAI WARNA PEMBEDA KELOMPOK CARD
+   ========================================================================== */
+.card-accounting {
+  border-top: 4px solid var(--accent) !important;
+}
+
+.card-it {
+  border-top: 4px solid var(--accent-secondary) !important;
+}
+
+.card-sertifikat-gallery-item {
+  border-top: 4px solid var(--accent-certificate) !important;
+}
+
+/* ==========================================================================
+   CAROUSEL SLIDER (HORIZONAL OVERFLOW CONTROLS)
+   ========================================================================== */
 .carousel-outer-container {
   position: relative;
   width: 100%;
 }
 
 .carousel-overflow {
-  width: 100%;
   overflow: hidden;
-  padding: 0.5rem 0;
+  width: 100%;
+  padding: 0.5rem 0.1rem 1.5rem;
 }
 
 .carousel-wrapper {
   display: flex;
- transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  gap: 0;
   width: 100%;
 }
 
-/* Slide item sizing - Disesuaikan menjadi 3 card per baris */
 .carousel-wrapper .interactive-card {
   flex: 0 0 100%;
-  max-width: 100%;
-  margin-bottom: 0;
+  margin-right: 0;
 }
 
 @media (min-width: 600px) {
   .carousel-wrapper .interactive-card {
-    flex: 0 0 calc(50% - 1rem);
-    max-width: calc(50% - 1rem);
-    margin: 0 0.5rem;
+    flex: 0 0 50%;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+  }
+  .carousel-wrapper {
+    margin: 0 -12px;
   }
 }
 
 @media (min-width: 900px) {
   .carousel-wrapper .interactive-card {
-    flex: 0 0 calc(33.333% - 1rem);
-    max-width: calc(33.333% - 1rem);
-    margin: 0 0.5rem;
+    flex: 0 0 33.333%;
   }
-}
-
-.card-banner {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 6px;
-  background: #e2e8f0;
-  margin-bottom: 1rem;
-}
-
-.card-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.card-subtitle {
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-.card-meta {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-bottom: 0.75rem;
-}
-
-.card-text {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 1.25rem;
-  white-space: pre-line; /* Menerjemahkan enter (\n) di database sebagai baris baru */
-}
-
-/* Buttons */
-.cosmic-btn {
-  display: inline-block;
-  background: var(--accent);
-  color: #ffffff;
-  padding: 0.5rem 1.1rem;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  text-align: center;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  transition: opacity 0.2s;
-}
-
-.cosmic-btn:hover {
-  opacity: 0.9;
 }
 
 .carousel-nav {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1.25rem;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .nav-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-main);
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
 }
 
 .nav-btn:hover {
@@ -331,37 +410,29 @@ body {
   border-color: var(--accent);
 }
 
-/* Loading & Modal */
-#loading-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: var(--bg-main);
-  z-index: 100000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease;
+.card-banner {
+  width: 100%;
+  height: 165px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
 }
 
-.loading-text {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--accent);
-}
-
+/* ==========================================================================
+   MODAL POP-UP DIALOG BOX
+   ========================================================================== */
 .global-modal {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: var(--modal-overlay);
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(4px);
-  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  z-index: 1000;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .global-modal.modal-open {
@@ -372,24 +443,29 @@ body {
 .modal-content-box {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  max-width: 680px;
   width: 90%;
-  max-height: 85vh;
-  border-radius: 12px;
-  overflow-y: auto;
+  max-width: 580px;
+  border-radius: 16px;
   position: relative;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
+  transform: scale(0.95);
+  transition: transform 0.2s ease-in-out;
+}
+
+.global-modal.modal-open .modal-content-box {
+  transform: scale(1);
 }
 
 .close-modal-btn {
   position: absolute;
-  top: 12px;
-  right: 16px;
-  background: transparent;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
   border: none;
-  color: var(--text-muted);
   font-size: 1.75rem;
+  color: var(--text-muted);
   cursor: pointer;
+  transition: var(--transition);
 }
 
 .close-modal-btn:hover {
@@ -398,14 +474,217 @@ body {
 
 .modal-body-render {
   padding: 2.25rem;
-  text-align: center;
 }
 
 .modal-image-preview {
-  max-width: 100%;
-  max-height: 55vh;
+  width: 100%;
+  max-height: 340px;
   object-fit: contain;
-  border-radius: 6px;
-  margin-top: 0.5rem;
-  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.cosmic-btn {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.35rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cosmic-btn:hover {
+  background: #0369a1;
+}
+
+/* ==========================================================================
+   COSMIC ORBIT SPINNER LOADER (MODERN & EYE-CATCHING)
+   ========================================================================== */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-main);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease-out;
+}
+
+.cosmic-loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Container Spinner */
+.cosmic-spinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inti Tengah yang Berdenyut */
+.cosmic-core {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--accent), 0 0 10px var(--accent-secondary);
+  animation: cosmic-pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Lingkaran Orbit */
+.cosmic-orbit {
+  position: absolute;
+  border: 3px solid transparent;
+  border-radius: 50%;
+}
+
+/* Orbit Pertama: Berputar Searah Jarum Jam */
+.cosmic-orbit.orbit-1 {
+  width: 100%;
+  height: 100%;
+  border-top-color: var(--accent);
+  border-bottom-color: var(--accent);
+  animation: cosmic-spin-clockwise 2s cubic-bezier(0.53, 0.21, 0.29, 0.67) infinite;
+}
+
+/* Orbit Kedua: Lebih Kecil, Berputar Terbalik, Lebih Cepat */
+.cosmic-orbit.orbit-2 {
+  width: 65%;
+  height: 65%;
+  border-left-color: var(--accent-secondary);
+  border-right-color: var(--accent-secondary);
+  animation: cosmic-spin-counter 1.2s cubic-bezier(0.53, 0.21, 0.29, 0.67) infinite;
+}
+
+/* Teks Loading dengan Efek Berjalan (Glow & Fade) */
+.cosmic-loading-text {
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--text-muted), var(--accent), var(--text-muted));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 2s linear infinite;
+}
+
+/* ==========================================================================
+   KEYFRAMES ANIMASI
+   ========================================================================== */
+@keyframes cosmic-spin-clockwise {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08); /* Sedikit mengembang di tengah putaran */
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes cosmic-spin-counter {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes cosmic-pulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.7;
+    box-shadow: 0 0 12px var(--accent);
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+    box-shadow: 0 0 25px var(--accent), 0 0 15px var(--accent-secondary);
+  }
+}
+
+@keyframes text-shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+/* ==========================================================================
+   SCROLL REVEAL ANIMATION
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   OPTIMASI RESPONSIF SELURUH PERANGKAT (BREAKPOINTS)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .content-container {
+    padding: 0 6%; /* Mengurangi padding secara bertahap di tablet */
+  }
+  .hero-section {
+    padding: 4rem 6% 2.5rem;
+  }
+  .nav-container {
+    padding: 1.25rem 6%;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-wrapper {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
+  #about-desc {
+    margin: 0 auto;
+  }
+  .nav-container {
+    flex-direction: column;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 1.25rem 4%;
+  }
+}
+
+@media (max-width: 600px) {
+  .content-container {
+    padding: 0 4%; /* Jarak minimum sisi layar pada ponsel agar tidak pecah */
+  }
+  .hero-section {
+    padding: 3rem 4% 2rem;
+  }
+  .vertical-cert-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .vertical-cert-main {
+    padding-right: 0;
+  }
+  .section-header-group {
+    flex-direction: row;
+    align-items: center;
+  }
 }
